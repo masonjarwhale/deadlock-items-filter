@@ -9,7 +9,10 @@
     <link href='/items/style.css' rel='stylesheet'>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+        const selected_items = [];
+
         $(document).ready( function () {
+
             $('.home').on('click keydown', function(event) {
                 if (event.type === 'click' || (event.type === 'keydown' && event.key === 'Enter')) {
                     $('body').css('background-image','url("https://assets-bucket.deadlock-api.com/assets-api-res/images/heroes/backgrounds/viscous_bg.webp")');
@@ -133,20 +136,31 @@
 
         /* STYLING - STYLING - STYLING - STYLING - STYLING - STYLING - STYLING - STYLING - STYLING - STYLING - STYLING - STYLING */
         $(document).on('click keydown', '.tag-unselected', function(event) {
-            if (event.type === 'click') {
-                $(this).attr('class','tag-currento');
-            }
-            if (event.type === 'keydown' && event.key === 'Enter') {
-                $(this).attr('class','tag-selected');
+            if ((event.type === 'click') || (event.type === 'keydown' && event.key === 'Enter')) {
+                var selected_item = $(this).attr('item');
+                selected_items.push(selected_item);
+
+                if (event.type === 'click') {
+                    $(this).attr('class','tag-currento');
+                }
+                if (event.type === 'keydown' && event.key === 'Enter') {
+                    $(this).attr('class','tag-selected');
+                }
             }
         });
 
         $(document).on('click keydown', '.tag-selected', function(event) {
-            if (event.type === 'click') {
-                $(this).attr('class','tag-currentp');
-            }
-            if (event.type === 'keydown' && event.key === 'Enter') {
-                $(this).attr('class','tag-unselected');
+            if ((event.type === 'click') || (event.type === 'keydown' && event.key === 'Enter')) {
+                var deselected_item = $(this).attr('item');
+                var index = selected_items.indexOf(deselected_item);
+                selected_items.splice(index, 1);
+
+                if (event.type === 'click') {
+                    $(this).attr('class','tag-currentp');
+                }
+                if (event.type === 'keydown' && event.key === 'Enter') {
+                    $(this).attr('class','tag-unselected');
+                }
             }
         });
 
@@ -155,6 +169,10 @@
         });
 
         $(document).on('click', '.tag-currento', function(event) {
+            var deselected_item = $(this).attr('item');
+            var index = selected_items.indexOf(deselected_item);
+            selected_items.splice(index, 1);
+
             $(this).attr('class','tag-currentp');
         });
 
@@ -163,8 +181,14 @@
         });
 
         $(document).on('click', '.tag-currentp', function(event) {
+            var selected_item = $(this).attr('item');
+            selected_items.push(selected_item);
             $(this).attr('class','tag-currento');
         });
+
+
+
+        
         
     </script>
 </head>
@@ -194,7 +218,7 @@ include 'db.php';
             </div>
 
             <div class="player" tabindex="0">
-                <audio loop><source src="./audio/hotel_music_close.mp3" type="audio/mpeg"></audio>
+                <audio loop><source src="./audio/music_match_intro_connecting_60bpm.mp3" type="audio/mpeg"></audio>
                 <image class="play-button" src="./icons/icon_play.svg"></image>
             </div>
             
@@ -216,7 +240,7 @@ include 'db.php';
                     $data_tags = $db->query("SELECT * FROM tags") or die($db->error);
 
                     while($row = $data_tags->fetch_assoc()){
-                        echo "<div class='tag-unselected' tabindex='0'><image src=\"{$row['filepath']}\"></image></div>";
+                        echo "<div class='tag-unselected' tabindex='0' title=\"{$row['display_name']}\" item=\"{$row['file_name']}\"><image src=\"{$row['filepath']}\"></image></div>";
                     }
 
 
@@ -237,7 +261,7 @@ include 'db.php';
                             echo "<div class='item' tabindex='0'><image src=\"{$row['shop_image_webp']}\"></image><div class='item-name'>{$row['name']}</div></div>";
                         }
                         else {
-                            echo "<div class='item' tabindex='0'><image src=\"{$row['shop_image_webp']}\"></image><div class='item-name'>{$row['name']}</div></div>";
+                            echo "<div class='item-container' tabindex='0'><div class='item' tabindex='-1'><image src=\"{$row['shop_image_webp']}\"></image><div class='item-name'>{$row['name']}</div></div></div>";
                         }
 
                     }
