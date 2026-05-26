@@ -16,11 +16,9 @@
 body {
     color: white;
     margin: 0;
-
     font-family: 'Inter';
     height: 90vh; 
     width: 100vw;
-    /* overflow: hidden; */
     background-color: black;
     background-image: url("https://assets-bucket.deadlock-api.com/assets-api-res/images/heroes/backgrounds/viscous_bg.webp");
     background-size: cover;
@@ -51,8 +49,6 @@ body {
 .tag-grid-container {
     grid-row: 2 / 3;
     grid-column: 1 / 2;
-    /* max-height: 60vh; */
-    /* background-color: blue; */
 }
 
 .tag-grid {
@@ -60,53 +56,94 @@ body {
     grid-template-columns: repeat(auto-fill, minmax(var(--tag-width), 1fr));
     gap: 0.521vw;
     margin-right: 1.5vh;
-    
 }
 
 .tag-unselected {
-    display: block;
+    display: grid;
     margin: auto;
     cursor: pointer;
     transition: 0.2s ease;
-    /* filter: brightness(0.5); */
-    opacity: 0.5;
-    
+    opacity: 0.4;
 }
     .tag-unselected img {
         width: 100%;
         height: auto;
-        
     }
     .tag-unselected:hover {
-        opacity: 1;
+        opacity: 0.7;
     }
     .tag-unselected:focus {
-        opacity: 1;
+        outline: auto;
+    }
+    .tag-unselected:focus:not(:focus-visible) {
+        outline: 0;
+        box-shadow: none;        
     }
 
 .tag-selected {
-    display: block;
+    display: grid;
     margin: auto;
     cursor: pointer;
     transition: 0.2s ease;
-    /* filter: brightness(0.5); */
     opacity: 1;
 }
     .tag-selected img {
-        width: 100%;
+        width: 100%;    
         height: auto;
-        
-    }
-    .tag-selected:hover {
-        opacity: 0.5;
     }
     .tag-selected:focus {
-        opacity: 0.5;
+        outline: auto;
+    }
+    .tag-selected:hover {
+        outline: 0;
+        box-shadow: none;
+        opacity: 0.7;
+    }
+    .tag-selected:focus:not(:focus-visible) {
+        outline: 0;
+        box-shadow: none;
+        opacity: 1;
+    }
+    .tag-selected:focus:not(:focus-visible):hover {
+        outline: 0;
+        box-shadow: none;
+        opacity: 0.7;
     }
 
+.tag-currento {
+    display: grid;
+    margin: auto;
+    cursor: pointer;
+    transition: 0.2s ease;
+    opacity: 1;
+}
+    .tag-currento img {
+        width: 100%;    
+        height: auto;
+    }
+    .tag-currento:focus:not(:focus-visible) {
+        outline: 0;
+        box-shadow: none;
+        opacity: 1;
+    }
 
-
-
+.tag-currentp {
+    display: grid;
+    margin: auto;
+    cursor: pointer;
+    transition: 0.2s ease;
+    opacity: 0.4;
+}
+    .tag-currentp img {
+        width: 100%;    
+        height: auto;
+    }
+    .tag-currentp:focus:not(:focus-visible) {
+        outline: 0;
+        box-shadow: none;
+        opacity: 0.4;
+    }
+    
 .item-grid-container {
     grid-row: 1 / 5;
     grid-column: 2 / 3;
@@ -162,7 +199,15 @@ body {
     margin-right: 1.5vh;
     padding-left: 1.5vh;
     border-left: white 1px dotted;
-}
+}   
+    
+
+    .home:focus:not(:focus-visible), .about:focus:not(:focus-visible), .images:focus:not(:focus-visible), .icons:focus:not(:focus-visible) {
+        opacity: 0.5;
+    }
+    .home:focus:not(:focus-visible):hover, .about:focus:not(:focus-visible):hover, .images:focus:not(:focus-visible):hover, .icons:focus:not(:focus-visible):hover {
+        opacity: 1;
+    }
 
 .home {
     grid-row: 1 / 2;
@@ -237,8 +282,6 @@ body {
     overflow: hidden;
     margin-right: 1.5vh;
     margin-top: 0.5vh;
-
-    /* padding-left: 1.5vh; */
 }
     .search-container input {
         border-radius: 0;
@@ -259,10 +302,15 @@ body {
     .search-container button:hover {
         filter: brightness(1.25);
     }
+    .search-container button:focus:not(:focus-visible) {
+        filter: brightness(0.75);
+    }
+    .search-container button:focus:not(:focus-visible):hover {
+        filter: brightness(1.25);
+    }
 
 .about-content {
     color: white;
-
     grid-row: 1 / 5;
     grid-column: 1 / 3;
     font-family: ms pgothic;
@@ -271,7 +319,6 @@ body {
         margin: 0;
         margin-bottom: 3vh;
         font-size: 1vw;
-        /* background-color: rgba(0, 0, 0, 0.5); */
         text-shadow:
             0.065vw 0 0.26vw black,
             0 0.065vw 0.26vw black,
@@ -287,6 +334,7 @@ body {
 
 .player {
     display: grid;
+    width: max-content;
 }
     .player:focus .play-button {
         background-color: rgba(133, 154, 248, 1);
@@ -294,12 +342,18 @@ body {
     .player:hover .play-button {
         background-color: rgba(133, 154, 248, 1);
     }
+    .player:focus:not(:focus-visible) .play-button {
+        background-color: rgba(133, 154, 248, 0.5);
+    }
+    .player:focus:not(:focus-visible):hover .play-button {
+        background-color: rgba(133, 154, 248, 1);
+    }
 
 .play-button {
     background-color: rgba(133, 154, 248, 0.5);
     border-radius: 0.26vw;
     padding: 10%;
-    width: 40%;
+    width: 3vw;
     height: clamp(1.302vw,2vh,2.604vw);
     margin-top: 0.5vh;
     margin-bottom: 0.5vh;
@@ -328,7 +382,6 @@ body {
     object-fit: contain;
     overflow: hidden;
     background-color: rgba(133, 154, 248, 0.25);
-    
     /* background-image: url("https://assets-bucket.deadlock-api.com/assets-api-res/images/main_menu/play/card_brawl.png"); */
 }
     .graphic:focus {
@@ -344,7 +397,3 @@ body {
         background-size: cover;
         outline: auto;
     }
-
-/* button {
-    display: none;
-} */

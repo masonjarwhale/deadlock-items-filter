@@ -12,13 +12,14 @@
         $(document).ready( function () {
             $('.home').on('click keydown', function(event) {
                 if (event.type === 'click' || (event.type === 'keydown' && event.key === 'Enter')) {
+                    $('body').css('background-image','url("https://assets-bucket.deadlock-api.com/assets-api-res/images/heroes/backgrounds/viscous_bg.webp")');
+                    
                     $('.about-content').empty();
                     $('.search-container').empty();
                     $('.search-title').empty();
                     $('.graphic-grid').empty();
                     $('.tag-grid-container').show();
 
-                    $('body').css('background-image','url("https://assets-bucket.deadlock-api.com/assets-api-res/images/heroes/backgrounds/viscous_bg.webp")');
                     $('.item-grid-container').show();
                     $('.layout').css('grid-template-columns','20% 80%');
 
@@ -31,12 +32,13 @@
 
             $('.about').on('click keydown', function(event) {
                 if (event.type === 'click' || (event.type === 'keydown' && event.key === 'Enter')) {
+                    $('body').css('background-image','url("https://assets-bucket.deadlock-api.com/assets-api-res/images/heroes/backgrounds/kelvin_bg.webp")');
+
                     $('.item-grid').empty();
                     $('.tag-grid').empty();
                     $('.search-container').empty();
                     $('.search-title').empty();
                     $('.graphic-grid').empty();
-                    $('body').css('background-image','url("https://assets-bucket.deadlock-api.com/assets-api-res/images/heroes/backgrounds/kelvin_bg.webp")');
 
                     $('.item-grid-container').hide();
 
@@ -50,13 +52,14 @@
             
             $('.images').on('click keydown', function(event) {
                 if (event.type === 'click' || (event.type === 'keydown' && event.key === 'Enter')) {
+                    $('body').css('background-image','url("https://assets-bucket.deadlock-api.com/assets-api-res/images/heroes/backgrounds/werewolf_bg.webp")');
+
                     current_table = 'images';
                     $('.item-grid').empty();
                     $('.tag-grid').empty();
                     $('.about-content').empty();
                     $('.tag-grid-container').hide();
 
-                    $('body').css('background-image','url("https://assets-bucket.deadlock-api.com/assets-api-res/images/heroes/backgrounds/werewolf_bg.webp")');
                     $('.item-grid-container').show();
 
                     $('.layout').css('grid-template-columns','14% 90%');
@@ -74,13 +77,14 @@
 
             $('.icons').on('click keydown', function(event) {
                 if (event.type === 'click' || (event.type === 'keydown' && event.key === 'Enter')) {
+                    $('body').css('background-image','url("https://assets-bucket.deadlock-api.com/assets-api-res/images/heroes/backgrounds/billy_bg.webp")');
+                    
                     current_table = 'icons';
                     $('.item-grid').empty();
                     $('.tag-grid').empty();
                     $('.about-content').empty();
                     $('.tag-grid-container').hide();
                     
-                    $('body').css('background-image','url("https://assets-bucket.deadlock-api.com/assets-api-res/images/heroes/backgrounds/billy_bg.webp")');
                     $('.item-grid-container').show();
                 
 
@@ -122,23 +126,44 @@
                         search: user_input,
                         table: current_table
                     });
-                    /* $('.search-container button').blur(); */
                 }
             });
+        });
+        
 
-            $('.tag-unselected').on('click keydown', function(event) {
-                if (event.type === 'click' || (event.type === 'keydown' && event.key === 'Enter')) {
-                    $(this).toggleClass('tag-unselected tag-selected');
-                    
-                }
-            });
-            
-            /* $('.tag-selected').on('click keydown', function(event) {
-                if (event.type === 'click' || (event.type === 'keydown' && event.key === 'Enter')) {
-                    $(this).toggleClass('tag-selected tag-unselected');
-                }
-            }); */
+        /* STYLING - STYLING - STYLING - STYLING - STYLING - STYLING - STYLING - STYLING - STYLING - STYLING - STYLING - STYLING */
+        $(document).on('click keydown', '.tag-unselected', function(event) {
+            if (event.type === 'click') {
+                $(this).attr('class','tag-currento');
+            }
+            if (event.type === 'keydown' && event.key === 'Enter') {
+                $(this).attr('class','tag-selected');
+            }
+        });
 
+        $(document).on('click keydown', '.tag-selected', function(event) {
+            if (event.type === 'click') {
+                $(this).attr('class','tag-currentp');
+            }
+            if (event.type === 'keydown' && event.key === 'Enter') {
+                $(this).attr('class','tag-unselected');
+            }
+        });
+
+        $(document).on('mouseleave', '.tag-currento', function(event) {
+            $(this).attr('class','tag-selected');
+        });
+
+        $(document).on('click', '.tag-currento', function(event) {
+            $(this).attr('class','tag-currentp');
+        });
+
+        $(document).on('mouseleave', '.tag-currentp', function(event) {
+            $(this).attr('class','tag-unselected');
+        });
+
+        $(document).on('click', '.tag-currentp', function(event) {
+            $(this).attr('class','tag-currento');
         });
         
     </script>
@@ -199,7 +224,7 @@ include 'db.php';
                 </div>
             </div>
 
-            <div class="item-grid-container">
+            <div class="item-grid-container" tabindex="-1">
                 <div class="item-grid">
 
                     <?php
