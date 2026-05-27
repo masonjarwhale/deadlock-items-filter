@@ -294,6 +294,7 @@ body {
         font-family: ms pgothic;
         font-weight: bold;
         filter: brightness(0.75);
+        border: 2px outset rgb(153, 153, 162);
     }
 
     .search-container button:focus {
@@ -397,3 +398,4 @@ body {
         background-size: cover;
         outline: auto;
     }
+

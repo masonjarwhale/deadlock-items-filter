@@ -9,9 +9,10 @@
     <link href='/items/style.css' rel='stylesheet'>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        const selected_items = [];
-
+        const selected_tags = [];
+        
         $(document).ready( function () {
+            $('.player audio')[0].volume = 0.1;
 
             $('.home').on('click keydown', function(event) {
                 if (event.type === 'click' || (event.type === 'keydown' && event.key === 'Enter')) {
@@ -23,11 +24,12 @@
                     $('.graphic-grid').empty();
                     $('.tag-grid-container').show();
 
-                    $('.item-grid-container').show();
+                    
                     $('.layout').css('grid-template-columns','20% 80%');
 
                     $('.tag-grid').load("tag_grid.php");
                     $('.item-grid').load("item_grid.php");
+                    $('.item-grid-container').show();
                     
                 }
                 
@@ -63,16 +65,16 @@
                     $('.about-content').empty();
                     $('.tag-grid-container').hide();
 
-                    $('.item-grid-container').show();
+                    
 
                     $('.layout').css('grid-template-columns','14% 90%');
 
-                    /*  */
                     $('.search-container').load("search_container.php");
                     $('.search-title').html("<h2>IMAGES</h2>");
                     $('.graphic-grid').load("graphic_grid.php", {
                         table: current_table
                     });
+                    $('.item-grid-container').show();
                     
                 }
                 
@@ -88,17 +90,17 @@
                     $('.about-content').empty();
                     $('.tag-grid-container').hide();
                     
-                    $('.item-grid-container').show();
+                    
                 
 
                     $('.layout').css('grid-template-columns','14% 90%');
 
-                    /*  */
                     $('.search-container').load("search_container.php");
                     $('.search-title').html("<h2>ICONS</h2>");
                     $('.graphic-grid').load("graphic_grid.php", {
                         table: current_table
                     });
+                    $('.item-grid-container').show();
                     
                 }
                 
@@ -137,23 +139,28 @@
         /* STYLING - STYLING - STYLING - STYLING - STYLING - STYLING - STYLING - STYLING - STYLING - STYLING - STYLING - STYLING */
         $(document).on('click keydown', '.tag-unselected', function(event) {
             if ((event.type === 'click') || (event.type === 'keydown' && event.key === 'Enter')) {
-                var selected_item = $(this).attr('item');
-                selected_items.push(selected_item);
-
+                var selected_tag = $(this).attr('tag');
+                selected_tags.push(selected_tag);
+                /* alert(selected_tags); */
                 if (event.type === 'click') {
                     $(this).attr('class','tag-currento');
                 }
                 if (event.type === 'keydown' && event.key === 'Enter') {
                     $(this).attr('class','tag-selected');
                 }
+
+                $('.item-grid').load("item_grid.php", {
+                    tags: selected_tags
+                });
             }
         });
 
         $(document).on('click keydown', '.tag-selected', function(event) {
             if ((event.type === 'click') || (event.type === 'keydown' && event.key === 'Enter')) {
-                var deselected_item = $(this).attr('item');
-                var index = selected_items.indexOf(deselected_item);
-                selected_items.splice(index, 1);
+                var deselected_tag = $(this).attr('tag');
+                var index = selected_tags.indexOf(deselected_tag);
+                selected_tags.splice(index, 1);
+                /* alert(selected_tags); */
 
                 if (event.type === 'click') {
                     $(this).attr('class','tag-currentp');
@@ -161,6 +168,10 @@
                 if (event.type === 'keydown' && event.key === 'Enter') {
                     $(this).attr('class','tag-unselected');
                 }
+
+                $('.item-grid').load("item_grid.php", {
+                    tags: selected_tags
+                });
             }
         });
 
@@ -169,11 +180,15 @@
         });
 
         $(document).on('click', '.tag-currento', function(event) {
-            var deselected_item = $(this).attr('item');
-            var index = selected_items.indexOf(deselected_item);
-            selected_items.splice(index, 1);
+            var deselected_tag = $(this).attr('tag');
+            var index = selected_tags.indexOf(deselected_tag);
+            selected_tags.splice(index, 1);
+            /* alert(selected_tags); */
 
             $(this).attr('class','tag-currentp');
+            $('.item-grid').load("item_grid.php", {
+                tags: selected_tags
+            });
         });
 
         $(document).on('mouseleave', '.tag-currentp', function(event) {
@@ -181,9 +196,13 @@
         });
 
         $(document).on('click', '.tag-currentp', function(event) {
-            var selected_item = $(this).attr('item');
-            selected_items.push(selected_item);
+            var selected_tag = $(this).attr('tag');
+            selected_tags.push(selected_tag);
+            /* alert(selected_tags); */
             $(this).attr('class','tag-currento');
+            $('.item-grid').load("item_grid.php", {
+                tags: selected_tags
+            });
         });
 
 
@@ -240,7 +259,7 @@ include 'db.php';
                     $data_tags = $db->query("SELECT * FROM tags") or die($db->error);
 
                     while($row = $data_tags->fetch_assoc()){
-                        echo "<div class='tag-unselected' tabindex='0' title=\"{$row['display_name']}\" item=\"{$row['file_name']}\"><image src=\"{$row['filepath']}\"></image></div>";
+                        echo "<div class='tag-unselected' tabindex='0' title=\"{$row['display_name']}\" tag=\"{$row['file_name']}\"><image src=\"{$row['filepath']}\"></image></div>";
                     }
 
 
@@ -253,17 +272,9 @@ include 'db.php';
 
                     <?php
 
-                    $data_items = $db->query("SELECT DISTINCT name, item_slot_type, cost, shop_image_webp FROM item_filters ORDER BY cost ASC, item_slot_type DESC;") or die($db->error);
-
+                    $data_items = $db->query("SELECT DISTINCT name, item_slot_type, cost, shop_image_webp FROM item_filters ORDER BY cost ASC, item_slot_type DESC") or die($db->error);
                     while($row = $data_items->fetch_assoc()){
-
-                        if (!empty($_GET['tags']) ) {
-                            echo "<div class='item' tabindex='0'><image src=\"{$row['shop_image_webp']}\"></image><div class='item-name'>{$row['name']}</div></div>";
-                        }
-                        else {
-                            echo "<div class='item-container' tabindex='0'><div class='item' tabindex='-1'><image src=\"{$row['shop_image_webp']}\"></image><div class='item-name'>{$row['name']}</div></div></div>";
-                        }
-
+                        echo "<div class='item' tabindex='0'><image src=\"{$row['shop_image_webp']}\"></image><div class='item-name'>{$row['name']}</div></div>";
                     }
 
                     ?>
