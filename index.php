@@ -11,13 +11,25 @@
     <script>
         const selected_tags = [];
         
+
         $(document).ready( function () {
+            
+            var background_on = true;
+            var current_background = 'url("https://assets-bucket.deadlock-api.com/assets-api-res/images/heroes/backgrounds/viscous_bg.webp")';
+
+            $('body').css('background-image', current_background);
             $('.player audio')[0].volume = 0.1;
 
             $('.home').on('click keydown', function(event) {
                 if (event.type === 'click' || (event.type === 'keydown' && event.key === 'Enter')) {
-                    $('body').css('background-image','url("https://assets-bucket.deadlock-api.com/assets-api-res/images/heroes/backgrounds/viscous_bg.webp")');
+                    current_background = 'url("https://assets-bucket.deadlock-api.com/assets-api-res/images/heroes/backgrounds/viscous_bg.webp")';
+                    /* alert(current_background); */
+                    if (background_on) {
+                        $('body').css('background-image', 'url("https://assets-bucket.deadlock-api.com/assets-api-res/images/heroes/backgrounds/viscous_bg.webp")');
+                    }
                     
+                    
+                    selected_tags.length = 0;
                     $('.about-content').empty();
                     $('.search-container').empty();
                     $('.search-title').empty();
@@ -37,7 +49,10 @@
 
             $('.about').on('click keydown', function(event) {
                 if (event.type === 'click' || (event.type === 'keydown' && event.key === 'Enter')) {
-                    $('body').css('background-image','url("https://assets-bucket.deadlock-api.com/assets-api-res/images/heroes/backgrounds/kelvin_bg.webp")');
+                    current_background = 'url("https://assets-bucket.deadlock-api.com/assets-api-res/images/heroes/backgrounds/kelvin_bg.webp")';
+                    if (background_on) {
+                        $('body').css('background-image','url("https://assets-bucket.deadlock-api.com/assets-api-res/images/heroes/backgrounds/kelvin_bg.webp")');
+                    }
 
                     $('.item-grid').empty();
                     $('.tag-grid').empty();
@@ -57,8 +72,10 @@
             
             $('.images').on('click keydown', function(event) {
                 if (event.type === 'click' || (event.type === 'keydown' && event.key === 'Enter')) {
-                    $('body').css('background-image','url("https://assets-bucket.deadlock-api.com/assets-api-res/images/heroes/backgrounds/werewolf_bg.webp")');
-
+                    current_background = 'url("https://assets-bucket.deadlock-api.com/assets-api-res/images/heroes/backgrounds/werewolf_bg.webp")';
+                    if (background_on) {
+                        $('body').css('background-image','url("https://assets-bucket.deadlock-api.com/assets-api-res/images/heroes/backgrounds/werewolf_bg.webp")');
+                    }
                     current_table = 'images';
                     $('.item-grid').empty();
                     $('.tag-grid').empty();
@@ -82,8 +99,11 @@
 
             $('.icons').on('click keydown', function(event) {
                 if (event.type === 'click' || (event.type === 'keydown' && event.key === 'Enter')) {
-                    $('body').css('background-image','url("https://assets-bucket.deadlock-api.com/assets-api-res/images/heroes/backgrounds/billy_bg.webp")');
-                    
+                    current_background = 'url("https://assets-bucket.deadlock-api.com/assets-api-res/images/heroes/backgrounds/ivy_bg.webp")';
+                    if (background_on) {
+                        $('body').css('background-image','url("https://assets-bucket.deadlock-api.com/assets-api-res/images/heroes/backgrounds/ivy_bg.webp")');
+                    }
+
                     current_table = 'icons';
                     $('.item-grid').empty();
                     $('.tag-grid').empty();
@@ -133,6 +153,20 @@
                     });
                 }
             });
+
+            $('.toggle-background').on('click keydown', function(event) {
+                if (event.type === 'click' || (event.type === 'keydown' && event.key === 'Enter')) {
+                    if (background_on) {
+                        $('body').css('background-image', 'none');
+                        background_on = false;
+                    }
+                    else {
+                        $('body').css('background-image', current_background);
+                        background_on = true;
+                    }
+                }
+            });
+
         });
         
 
@@ -236,10 +270,16 @@ include 'db.php';
                 ICONS
             </div>
 
+            <div class="toggle-background" tabindex="0">
+                TOGGLE
+            </div>
+
             <div class="player" tabindex="0">
                 <audio loop><source src="./audio/music_match_intro_connecting_60bpm.mp3" type="audio/mpeg"></audio>
                 <image class="play-button" src="./icons/icon_play.svg"></image>
             </div>
+
+            
             
             
         </div>
@@ -269,7 +309,6 @@ include 'db.php';
 
             <div class="item-grid-container" tabindex="-1">
                 <div class="item-grid">
-
                     <?php
 
                     $data_items = $db->query("SELECT DISTINCT name, item_slot_type, cost, shop_image_webp FROM item_filters ORDER BY cost ASC, item_slot_type DESC") or die($db->error);
@@ -277,8 +316,8 @@ include 'db.php';
                         echo "<div class='item' tabindex='0'><image src=\"{$row['shop_image_webp']}\"></image><div class='item-name'>{$row['name']}</div></div>";
                     }
 
+                    
                     ?>
-
                 </div>
                 <div class="graphic-grid"></div>
 

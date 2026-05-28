@@ -4,7 +4,7 @@
     Huge thanks to the devs of the deadlock.api for making this possible.<br>
 </p>
 <p>
-    All visuals created by Valve devs excluding a handful of SVGs made by:<br>
+    All visuals created by Valve devs excluding a handful of SVGs I made by:<br>
     ○ using preexisting SVGs (<a href="./icons/shred.svg" tabindex="0">shred</a> and <a href="./icons/armor_debuff_color.svg" tabindex="0">debuff resist</a> icon)<br>
     ○ tracing bitmaps of preexisting PNGs (<a href="./icons/scaling.svg" tabindex="0">scaling</a>, <a href="./icons/fire_rate_jammer.svg" tabindex="0">enemy fire rate reduction</a>, and <a href="./icons/fire_rate_plus.svg" tabindex="0">fire rate</a> icon)<br>
 </p>

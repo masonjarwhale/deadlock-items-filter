@@ -34,7 +34,7 @@ if (!empty($_POST['tags']) ) {
     }
 
     $query .= $query_end;
-    /* echo $query;*/
+    /* echo $query; */
 
     $data_items = $db->query($query) or die($db->error);
     while($row = $data_items->fetch_assoc()){

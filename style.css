@@ -5,7 +5,7 @@
 
 .item-grid-container {
     scrollbar-width: 1vw;
-    scrollbar-color: rgba(133, 154, 248, 0.5) rgba(0, 0, 0, 0.25);
+    scrollbar-color: rgba(133, 154, 248, 0.5) rgba(0, 0, 0, 0.5);
     scrollbar-gutter: stable;
 }
 
@@ -20,7 +20,7 @@ body {
     height: 90vh; 
     width: 100vw;
     background-color: black;
-    background-image: url("https://assets-bucket.deadlock-api.com/assets-api-res/images/heroes/backgrounds/viscous_bg.webp");
+    background-image: none;
     background-size: cover;
 }
 
@@ -73,7 +73,8 @@ body {
         opacity: 0.7;
     }
     .tag-unselected:focus {
-        outline: auto;
+        transition: none;
+        outline: 1px white solid;
     }
     .tag-unselected:focus:not(:focus-visible) {
         outline: 0;
@@ -92,7 +93,8 @@ body {
         height: auto;
     }
     .tag-selected:focus {
-        outline: auto;
+        transition: none;
+        outline: 1px white solid;
     }
     .tag-selected:hover {
         outline: 0;
@@ -142,26 +144,28 @@ body {
         outline: 0;
         box-shadow: none;
         opacity: 0.4;
-    }
+    }   
     
 .item-grid-container {
     grid-row: 1 / 5;
     grid-column: 2 / 3;
-    overflow-y: scroll;
+    overflow-y: auto;
     border-left: white 1px dotted;
     overflow-x: hidden;
+    /* padding-top: 3px;
+    padding-bottom: 3px; */
 }
 
 .item-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(var(--item-width), 1fr));
     gap: 0.521vw;
-    margin: 0.4vh 1.5vh;
+    margin: 0px 1.5vh;
 }
 
 .item {
     font-size: 0; /*to remove space between img and txt elements*/
-    transition: 0.3s ease;
+    /* transition: 0.3s ease; */
     border: rgba(255, 255, 255, 0.25) 1px solid;
 }
     .item img {
@@ -170,11 +174,13 @@ body {
     }
     .item:focus {
         filter: brightness(1.2);
-        outline: auto;
+        background-color: rgba(112, 248, 193, 0.7);
+        /* outline: auto; */
     }
     .item:hover {
         filter: brightness(1.2);
-        outline: auto;
+        background-color: rgba(112, 248, 193, 0.7);
+        /* outline: auto; */
     }
 
 .item-name {
@@ -202,12 +208,12 @@ body {
 }   
     
 
-    .home:focus:not(:focus-visible), .about:focus:not(:focus-visible), .images:focus:not(:focus-visible), .icons:focus:not(:focus-visible) {
-        opacity: 0.5;
-    }
-    .home:focus:not(:focus-visible):hover, .about:focus:not(:focus-visible):hover, .images:focus:not(:focus-visible):hover, .icons:focus:not(:focus-visible):hover {
-        opacity: 1;
-    }
+.home:focus:not(:focus-visible), .about:focus:not(:focus-visible), .images:focus:not(:focus-visible), .icons:focus:not(:focus-visible), .toggle-background:focus:not(:focus-visible) {
+    opacity: 0.5;
+}
+.home:focus:not(:focus-visible):hover, .about:focus:not(:focus-visible):hover, .images:focus:not(:focus-visible):hover, .icons:focus:not(:focus-visible):hover, .toggle-background:focus:not(:focus-visible):hover {
+    opacity: 1;
+}
 
 .home {
     grid-row: 1 / 2;
@@ -258,6 +264,19 @@ body {
         opacity: 1;
     }
     .icons:hover {
+        opacity: 1;
+    }
+
+.toggle-background {
+    grid-row: 5 / 6;
+    grid-column: 1 / 2;
+    cursor: pointer;
+    opacity: 0.5;
+}
+    .toggle-background:focus {
+        opacity: 1;
+    }
+    .toggle-background:hover {
         opacity: 1;
     }
 
@@ -363,17 +382,17 @@ body {
 
 .graphic-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(7.813vw, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(8vw, 1fr));
     gap: 0.521vw;
-    margin: 0.4vh 1.5vh;
+    margin: 0px 1.5vh;
 }
     .graphic-grid a {
         display: grid;
     }
     .graphic-grid a:focus {
         display: grid;
-        outline: auto;
-        background-color: rgba(133, 154, 248, 0.4);
+        /* outline: auto; */
+        background-color: rgba(133, 154, 248, 0.6);
     }
 
 
@@ -386,16 +405,16 @@ body {
     /* background-image: url("https://assets-bucket.deadlock-api.com/assets-api-res/images/main_menu/play/card_brawl.png"); */
 }
     .graphic:focus {
-        background-color: rgba(133, 154, 248, 0.4);
+        background-color: rgba(133, 154, 248, 0.6);
         /* background-image: url("https://assets-bucket.deadlock-api.com/assets-api-res/images/shop/dmg_report_texture.png"); */
         background-size: cover;
-        outline: auto;
+        /* outline: auto; */
         
     }
     .graphic:hover {
-        background-color: rgba(133, 154, 248, 0.4);
+        background-color: rgba(133, 154, 248, 0.6);
         /* background-image: url("https://assets-bucket.deadlock-api.com/assets-api-res/images/shop/dmg_report_texture.png"); */
         background-size: cover;
-        outline: auto;
+        /* outline: auto; */
     }
 
