@@ -10,7 +10,7 @@
 </p>
 <p>
     This site runs entirely on PHP, JQUERY AJAX, MySQL, CSS, and HTML.<br> 
-    Check out the <a href="" tabindex="0">source code</a>!
+    Check out the <a href="https://github.com/masonjarwhale/deadlock-items-filter" tabindex="0">source code</a>!
 </p>
 <p>
     - Wizards (aka Deluxe) ðŸ«°
