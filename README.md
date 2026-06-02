@@ -27,9 +27,9 @@ CREATE TABLE item_filters (
     item_tier INT(1),
     is_active_item INT(1),
     cost INT(5),
-	  imbue VARCHAR(50),
-	  property VARCHAR(50),
-	  stat_value VARCHAR(50),
-	  stat_scale nvarchar(50)
+	imbue VARCHAR(50),
+	property VARCHAR(50),
+	stat_value VARCHAR(50),
+	stat_scale VARCHAR(50)
 );
 
