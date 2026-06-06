@@ -9,12 +9,12 @@ CREATE TABLE tags (
 );
 
 CREATE TABLE icons (
-    icon_name VARCHAR(100),
+    graphic_name VARCHAR(100),
     filepath VARCHAR(200)
 );
 
 CREATE TABLE images (
-    image_name VARCHAR(100),
+    graphic_name VARCHAR(100),
     filepath VARCHAR(200)
 );
 
