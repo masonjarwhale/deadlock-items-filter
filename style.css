@@ -306,7 +306,7 @@ body {
         width: 100%;
     }
 
-    .search-title .info:hover {
+    .search-title .info:hover, .search-title .info:focus {
         filter: brightness(0.8);
     }
 
