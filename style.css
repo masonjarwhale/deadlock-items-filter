@@ -302,12 +302,17 @@ body {
         /* display: inline-block; */
         /* height: 3vh;
         width: 3vh; */
-        object-fit: contain;
-        width: 100%;
+        display: grid;
+
+        /* object-fit: cover; */
+        /* justify-items: center;
+        align-items: center; */
+        width: 70%;
+        margin: auto;
     }
 
     .search-title .info:hover, .search-title .info:focus {
-        filter: brightness(0.8);
+        filter: brightness(0.75);
     }
 
 .search-container {
@@ -364,7 +369,7 @@ body {
     .about-content a {
         color: rgba(133, 154, 248);
     }
-    .about-content a:focus {
+    .about-content a:focus, .about-content a:hover {
         filter: brightness(2);
     }
 
