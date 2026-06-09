@@ -95,6 +95,7 @@
                         table: current_table
                     });
                     $('.item-grid-container').show();
+                    $('.item-grid-container').scrollTop(0);
                     
                 }
                 
@@ -126,6 +127,7 @@
                         table: current_table
                     });
                     $('.item-grid-container').show();
+                    $('.item-grid-container').scrollTop(0);
                     
                 }
                 
