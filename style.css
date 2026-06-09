@@ -325,8 +325,16 @@ body {
 }
     .search-container input {
         border-radius: 0;
-        border: none;
+        border: rgba(255, 255, 255, 0.25) solid 1px;
+        background-color: rgba(255, 255, 255, 0.1);
         margin-bottom: 0.5vh;
+        box-sizing: border-box;
+        width: 100%;
+        color: white;
+    }
+
+    .search-container input:focus {
+        border: rgba(133, 154, 248, 1) solid 1px;
     }
 
     .search-container button {
@@ -378,20 +386,20 @@ body {
     width: max-content;
 }
     .player:focus .play-button {
-        background-color: rgba(133, 154, 248, 1);
+        background-color: rgba(255, 255, 255, 0.5);
     }
     .player:hover .play-button {
-        background-color: rgba(133, 154, 248, 1);
+        background-color: rgba(255, 255, 255, 0.5);
     }
     .player:focus:not(:focus-visible) .play-button {
-        background-color: rgba(133, 154, 248, 0.5);
+        background-color: rgba(255, 255, 255, 0.25);
     }
     .player:focus:not(:focus-visible):hover .play-button {
-        background-color: rgba(133, 154, 248, 1);
+        background-color: rgba(255, 255, 255, 0.5);
     }
 
 .play-button {
-    background-color: rgba(133, 154, 248, 0.5);
+    background-color: rgba(255, 255, 255, 0.25);
     border-radius: 0.26vw;
     padding: 10%;
     width: 3vw;
