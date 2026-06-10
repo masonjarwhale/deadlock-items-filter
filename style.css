@@ -75,22 +75,20 @@ body {
     margin: auto;
     cursor: pointer;
     transition: 0.2s ease;
-    opacity: 0.4;
 }
     .tag-unselected img {
         width: 100%;
         height: auto;
     }
     .tag-unselected:hover {
-        opacity: 0.7;
+        transform: scale(1.2);
     }
-    .tag-unselected:focus {
-        transition: none;
-        outline: 1px white solid;
+    .tag-unselected:focus-visible {
+        outline: white solid 1px;
     }
-    .tag-unselected:focus:not(:focus-visible) {
-        outline: 0;
-        box-shadow: none;        
+    .tag-unselected:focus-visible {
+        transform: scale(1.2);
+
     }
 
 .tag-selected {
@@ -98,65 +96,20 @@ body {
     margin: auto;
     cursor: pointer;
     transition: 0.2s ease;
-    opacity: 1;
 }
     .tag-selected img {
         width: 100%;    
         height: auto;
     }
-    .tag-selected:focus {
-        transition: none;
-        outline: 1px white solid;
-    }
     .tag-selected:hover {
-        outline: 0;
-        box-shadow: none;
-        opacity: 0.7;
+        transform: scale(1.2);
     }
-    .tag-selected:focus:not(:focus-visible) {
-        outline: 0;
-        box-shadow: none;
-        opacity: 1;
+    .tag-selected:focus-visible {
+        outline: white solid 1px;
     }
-    .tag-selected:focus:not(:focus-visible):hover {
-        outline: 0;
-        box-shadow: none;
-        opacity: 0.7;
+    .tag-selected:focus-visible {
+        transform: scale(1.2);
     }
-
-.tag-currento {
-    display: grid;
-    margin: auto;
-    cursor: pointer;
-    transition: 0.2s ease;
-    opacity: 1;
-}
-    .tag-currento img {
-        width: 100%;    
-        height: auto;
-    }
-    .tag-currento:focus:not(:focus-visible) {
-        outline: 0;
-        box-shadow: none;
-        opacity: 1;
-    }
-
-.tag-currentp {
-    display: grid;
-    margin: auto;
-    cursor: pointer;
-    transition: 0.2s ease;
-    opacity: 0.4;
-}
-    .tag-currentp img {
-        width: 100%;    
-        height: auto;
-    }
-    .tag-currentp:focus:not(:focus-visible) {
-        outline: 0;
-        box-shadow: none;
-        opacity: 0.4;
-    }   
     
 .item-grid-container {
     grid-row: 1 / 5;
