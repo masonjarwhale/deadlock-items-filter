@@ -1,6 +1,18 @@
 :root {
     --item-width: 4.557vw;
     --tag-width: 2.604vw;
+    --graphic-width: 8vw;
+}
+
+@media (max-width: 600px) {
+    :root {
+        --item-width: 32px;
+        --tag-width: 16px;
+    }
+
+    .item-name {
+        font-size: 1.2vw !important;
+    }
 }
 
 .item-grid-container {
@@ -324,6 +336,7 @@ body {
     margin-top: 0.5vh;
 }
     .search-container input {
+        display: block;
         border-radius: 0;
         border: rgba(255, 255, 255, 0.25) solid 1px;
         background-color: rgba(255, 255, 255, 0.1);
@@ -331,6 +344,7 @@ body {
         box-sizing: border-box;
         width: 100%;
         color: white;
+        font-size: 0.781vw;
     }
 
     .search-container input:focus {
@@ -338,11 +352,15 @@ body {
     }
 
     .search-container button {
+        display: block;
+        /* margin: 0; */
         border-radius: 0;
         font-family: ms pgothic;
         font-weight: bold;
         filter: brightness(0.75);
         border: 2px outset rgb(153, 153, 162);
+        font-size: 0.781vw;
+        width: max-content;
     }
 
     .search-container button:focus {
@@ -384,6 +402,7 @@ body {
 .player {
     display: grid;
     width: max-content;
+    margin-top: 0.5vh;
 }
     .player:focus .play-button {
         background-color: rgba(255, 255, 255, 0.5);
@@ -403,15 +422,14 @@ body {
     border-radius: 0.26vw;
     padding: 10%;
     width: 3vw;
-    height: clamp(1.302vw,2vh,2.604vw);
-    margin-top: 0.5vh;
+    height: clamp(1.302vw,1vw,2.604vw);
     margin-bottom: 0.5vh;
     cursor: pointer;
 }
 
 .graphic-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(8vw, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(var(--graphic-width), 1fr));
     gap: 0.521vw;
     margin: 0px 0.705vw;
 }
