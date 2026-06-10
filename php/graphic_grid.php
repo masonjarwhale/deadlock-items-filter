@@ -20,6 +20,3 @@ else {
         echo "<a href='{$row['filepath']}'><image class='graphic' src='{$row['filepath']}' loading='lazy'></image></a>";
     }
 }
-
-$db->close();
-?>

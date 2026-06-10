@@ -13,6 +13,3 @@ if (!empty($_POST['tab']) ) {
         echo "<button type='submit' name='submit'>SEARCH</button>";
     }
 }
-    
-
-?>
