@@ -75,6 +75,7 @@ body {
     margin: auto;
     cursor: pointer;
     transition: 0.2s ease;
+    opacity: 0.5;
 }
     .tag-unselected img {
         width: 100%;
@@ -96,6 +97,7 @@ body {
     margin: auto;
     cursor: pointer;
     transition: 0.2s ease;
+    opacity: 1;
 }
     .tag-selected img {
         width: 100%;    
