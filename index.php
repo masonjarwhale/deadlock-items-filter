@@ -9,15 +9,11 @@
     <link rel="icon" type="image/x-icon" href="./icons/viscous_goo_puddle.svg">
     <link href='./style.css' rel='stylesheet'>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="./js/tag_selection_styling.js"></script>
+    <script src="./js/tag_selection.js"></script>
     <script src="./js/dynamic_divs.js"></script>
     <script src="./js/music_player.js"></script>
     <script src="./js/backgrounds.js"></script>
 </head>
-
-<?php 
-include './php/db.php';
-?>
 
 <body>
     <div class="layout-container">
@@ -61,27 +57,16 @@ include './php/db.php';
 
             <div class="tag-grid-container">
                 <div class="tag-grid">
-                    <?php
-
-                    $data_tags = $db->query("SELECT * FROM tags") or die($db->error);
-
-                    while($row = $data_tags->fetch_assoc()){
-                        echo "<div class='tag-unselected' tabindex='0' title=\"{$row['display_name']}\" tag=\"{$row['file_name']}\"><image src=\"{$row['filepath']}\"></image></div>";
-                    }
-
+                    <?php 
+                        include './php/tag_grid.php';
                     ?>
                 </div>
             </div>
 
             <div class="item-grid-container" tabindex="-1">
                 <div class="item-grid">
-                    <?php
-
-                    $data_items = $db->query("SELECT DISTINCT name, item_slot_type, cost, shop_image_webp FROM item_filters ORDER BY cost ASC, item_slot_type DESC") or die($db->error);
-                    while($row = $data_items->fetch_assoc()){
-                        echo "<div class='item' tabindex='0'><image src=\"{$row['shop_image_webp']}\"></image><div class='item-name'>{$row['name']}</div></div>";
-                    }
-                    
+                    <?php 
+                        include './php/item_grid.php';
                     ?>
                 </div>
                 <div class="graphic-grid"></div>

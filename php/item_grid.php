@@ -48,9 +48,3 @@ else {
         echo "<div class='item' tabindex='0'><image src=\"{$row['shop_image_webp']}\"></image><div class='item-name'>{$row['name']}</div></div>";
     }
 }
-
-
-
-
-
-?>
