@@ -13,6 +13,7 @@
     <script src="./js/dynamic_divs.js"></script>
     <script src="./js/music_player.js"></script>
     <script src="./js/backgrounds.js"></script>
+    <script src="./js/tooltip.js"></script>
 </head>
 
 <body>
@@ -48,7 +49,6 @@
         </div>
 
         <div class="layout">
-    
             <div class="about-content"></div>
 
             <div class="search-title"></div>
@@ -63,6 +63,7 @@
                 </div>
             </div>
 
+            <div class="tooltip"></div>
             <div class="item-grid-container" tabindex="-1">
                 <div class="item-grid">
                     <?php 

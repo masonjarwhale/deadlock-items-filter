@@ -147,6 +147,7 @@ body {
     .item:hover {
         filter: brightness(1.2);
         background-color: rgba(112, 248, 193, 0.7);
+        anchor-name: --hovered-item;
         /* outline: auto; */
     }
 
@@ -420,3 +421,18 @@ body {
         /* outline: auto; */
     }
 
+.tooltip {
+    visibility: hidden;
+    height: 400px;
+    width: 400px;
+    margin-left: 0.5vw;
+    /* margin: 0;
+    inset: auto; */
+    background-color: orange;
+    position: absolute;
+    position-anchor: --hovered-item;
+    
+    top: anchor(top);
+    left: anchor(right);
+    position-try: none;
+}
