@@ -2,8 +2,6 @@
 
 include 'db.php';
 $table = $_POST['table'];
-$max_display = 3000;
-
 
 if (!empty($_POST['search']) ) {
     $search = $_POST['search'];
@@ -14,7 +12,6 @@ if (!empty($_POST['search']) ) {
 
     while($row = $data->fetch_assoc()){
         echo "<a href='{$row['filepath']}'><image class='graphic' src='{$row['filepath']}' loading='lazy'></image></a>";
-
     }
 }
 else {
@@ -22,7 +19,6 @@ else {
     while($row = $data->fetch_assoc()){
         echo "<a href='{$row['filepath']}'><image class='graphic' src='{$row['filepath']}' loading='lazy'></image></a>";
     }
-
 }
 
 $db->close();

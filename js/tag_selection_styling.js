@@ -12,7 +12,7 @@ $(document).on('click keydown', '.tag-unselected', function(event) {
             $(this).attr('class','tag-selected');
         }
 
-        $('.item-grid').load("item_grid.php", {
+        $('.item-grid').load("./php/item_grid.php", {
             tags: selected_tags
         });
     }
@@ -32,7 +32,7 @@ $(document).on('click keydown', '.tag-selected', function(event) {
             $(this).attr('class','tag-unselected');
         }
 
-        $('.item-grid').load("item_grid.php", {
+        $('.item-grid').load("./php/item_grid.php", {
             tags: selected_tags
         });
     }
@@ -51,7 +51,7 @@ $(document).on('click', '.tag-currento', function(event) {
     /* alert(selected_tags); */
 
     $(this).attr('class','tag-currentp');
-    $('.item-grid').load("item_grid.php", {
+    $('.item-grid').load("./php/item_grid.php", {
         tags: selected_tags
     });
 });
@@ -65,7 +65,7 @@ $(document).on('click', '.tag-currentp', function(event) {
     selected_tags.push(selected_tag);
     /* alert(selected_tags); */
     $(this).attr('class','tag-currento');
-    $('.item-grid').load("item_grid.php", {
+    $('.item-grid').load("./php/item_grid.php", {
         tags: selected_tags
     });
 });

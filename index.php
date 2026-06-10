@@ -9,12 +9,14 @@
     <link rel="icon" type="image/x-icon" href="./icons/viscous_goo_puddle.svg">
     <link href='./style.css' rel='stylesheet'>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="./tag_selection_styling.js"></script>
-    <script src="./jquery_dynamic_divs.js"></script>
+    <script src="./js/tag_selection_styling.js"></script>
+    <script src="./js/dynamic_divs.js"></script>
+    <script src="./js/music_player.js"></script>
+    <script src="./js/backgrounds.js"></script>
 </head>
 
 <?php 
-include 'db.php';
+include './php/db.php';
 ?>
 
 <body>

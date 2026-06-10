@@ -1,12 +1,8 @@
-The 4 tables in the DB are formatted as follows:
+The 5 tables in the DB are formatted as follows:
 ```sql
-CREATE TABLE tags (
-    id INT(2),
-    file_name VARCHAR(30),
-    display_name VARCHAR(30),
-    filepath VARCHAR(30),
-    subquery VARCHAR(30)
-);
+CREATE TABLE components {
+    class_name VARCHAR(50);
+};
 
 CREATE TABLE icons (
     graphic_name VARCHAR(100),
@@ -16,6 +12,14 @@ CREATE TABLE icons (
 CREATE TABLE images (
     graphic_name VARCHAR(100),
     filepath VARCHAR(200)
+);
+
+CREATE TABLE tags (
+    id INT(2),
+    file_name VARCHAR(30),
+    display_name VARCHAR(30),
+    filepath VARCHAR(30),
+    subquery VARCHAR(30)
 );
 
 CREATE TABLE item_filters (
@@ -32,4 +36,3 @@ CREATE TABLE item_filters (
 	stat_value VARCHAR(50),
 	stat_scale VARCHAR(50)
 );
-
