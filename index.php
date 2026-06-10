@@ -9,248 +9,8 @@
     <link rel="icon" type="image/x-icon" href="./icons/viscous_goo_puddle.svg">
     <link href='./style.css' rel='stylesheet'>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        const selected_tags = [];
-        
-
-        $(document).ready( function () {
-            
-            var background_on = true;
-            var current_background = 'url("https://assets-bucket.deadlock-api.com/assets-api-res/images/heroes/backgrounds/viscous_bg.webp")';
-
-            $('body').css('background-image', current_background);
-            $('.player audio')[0].volume = 0.1;
-
-            $('.home').on('click keydown', function(event) {
-                if (event.type === 'click' || (event.type === 'keydown' && event.key === 'Enter')) {
-                    current_background = 'url("https://assets-bucket.deadlock-api.com/assets-api-res/images/heroes/backgrounds/viscous_bg.webp")';
-                    /* alert(current_background); */
-                    if (background_on) {
-                        $('body').css('background-image', 'url("https://assets-bucket.deadlock-api.com/assets-api-res/images/heroes/backgrounds/viscous_bg.webp")');
-                    }
-                    
-                    
-                    selected_tags.length = 0;
-                    $('.about-content').empty();
-                    $('.search-container').empty();
-                    $('.search-title').empty();
-                    $('.graphic-grid').empty();
-                    $('.tag-grid-container').show();
-
-                    
-                    $('.layout').css('grid-template-columns','20% 80%');
-
-                    $('.tag-grid').load("tag_grid.php");
-                    $('.item-grid').load("item_grid.php");
-                    $('.item-grid-container').show();
-                    
-                }
-                
-            });
-
-            $('.about').on('click keydown', function(event) {
-                if (event.type === 'click' || (event.type === 'keydown' && event.key === 'Enter')) {
-                    current_background = 'url("https://assets-bucket.deadlock-api.com/assets-api-res/images/heroes/backgrounds/kelvin_bg.webp")';
-                    if (background_on) {
-                        $('body').css('background-image','url("https://assets-bucket.deadlock-api.com/assets-api-res/images/heroes/backgrounds/kelvin_bg.webp")');
-                    }
-
-                    $('.item-grid').empty();
-                    $('.tag-grid').empty();
-                    $('.search-container').empty();
-                    $('.search-title').empty();
-                    $('.graphic-grid').empty();
-
-                    $('.item-grid-container').hide();
-
-                    $('.about-content').load("about.php");
-                    
-                }
-                
-            });
-
-            var current_table = 'whatever';
-            
-            $('.images').on('click keydown', function(event) {
-                if (event.type === 'click' || (event.type === 'keydown' && event.key === 'Enter')) {
-                    current_background = 'url("https://assets-bucket.deadlock-api.com/assets-api-res/images/heroes/backgrounds/werewolf_bg.webp")';
-                    if (background_on) {
-                        $('body').css('background-image','url("https://assets-bucket.deadlock-api.com/assets-api-res/images/heroes/backgrounds/werewolf_bg.webp")');
-                    }
-                    current_table = 'images';
-                    $('.item-grid').empty();
-                    $('.tag-grid').empty();
-                    $('.about-content').empty();
-                    $('.tag-grid-container').hide();
-
-                    
-
-                    $('.layout').css('grid-template-columns','14% 90%');
-
-                    $('.search-container').load("search_container.php", {
-                        tab: current_table
-                    });
-                    $('.search-title').html("<h2>IMAGES</h2><image class='info' title='PNG WEBP SVG ONLY&#013;&#013;ABRAMS ⟺ bull&#013;APOLLO ⟺ fencer&#013;BEBOP ⟺ bebop&#013;BILLY ⟺ punkgoat&#013;CALICO ⟺ nano&#013;CELESTE ⟺ unicorn&#013;DOORMAN ⟺ doorman&#013;DRIFTER ⟺ drifter&#013;DYNAMO ⟺sumo&#013;GRAVES ⟺ necro&#013;GREY TALON ⟺ archer&#013;HAZE ⟺ haze&#013;HOLLIDAY ⟺ Astro&#013;INFERNUS ⟺ inferno&#013;IVY ⟺ tengu&#013;KELVIN ⟺ kelvin&#013;LADY GEIST ⟺ spectre&#013;LASH ⟺ lash&#013;McGINNIS ⟺ engineer&#013;MINA ⟺ vampirebat&#013;MIRAGE ⟺ mirage&#013;MO & KRILL ⟺ digger&#013;PAIGE ⟺ bookworm&#013;PARADOX ⟺ chrono&#013;POCKET ⟺ synth&#013;REM ⟺ familiar&#013;SEVEN ⟺ gigawatt&#013;SHIV ⟺ shiv&#013;SILVER ⟺ werewolf&#013;SINCLAIR ⟺ magician&#013;VENATOR ⟺ priest&#013;VICTOR ⟺ frank&#013;VINDICTA ⟺ hornet&#013;VISCOUS ⟺ viscous&#013;VYPER ⟺ kali/viper&#013;WARDEN ⟺ warden&#013;WRAITH ⟺ wraith&#013;YAMATO ⟺ yamato' src='./icons/info.svg' tabindex='0'><image>");
-                    $('.graphic-grid').load("graphic_grid.php", {
-                        table: current_table
-                    });
-                    $('.item-grid-container').show();
-                    $('.item-grid-container').scrollTop(0);
-                    
-                }
-                
-            });
-
-            $('.icons').on('click keydown', function(event) {
-                if (event.type === 'click' || (event.type === 'keydown' && event.key === 'Enter')) {
-                    current_background = 'url("https://assets-bucket.deadlock-api.com/assets-api-res/images/heroes/backgrounds/ivy_bg.webp")';
-                    if (background_on) {
-                        $('body').css('background-image','url("https://assets-bucket.deadlock-api.com/assets-api-res/images/heroes/backgrounds/ivy_bg.webp")');
-                    }
-
-                    current_table = 'icons';
-                    $('.item-grid').empty();
-                    $('.tag-grid').empty();
-                    $('.about-content').empty();
-                    $('.tag-grid-container').hide();
-                    
-                    
-                
-
-                    $('.layout').css('grid-template-columns','14% 90%');
-
-                    $('.search-container').load("search_container.php", {
-                        tab: current_table
-                    });
-                    $('.search-title').html("<h2>ICONS</h2><image class='info' title='PNG WEBP SVG ONLY&#013;&#013;ABRAMS ⟺ bull&#013;APOLLO ⟺ fencer&#013;BEBOP ⟺ bebop&#013;BILLY ⟺ punkgoat&#013;CALICO ⟺ nano&#013;CELESTE ⟺ unicorn&#013;DOORMAN ⟺ doorman&#013;DRIFTER ⟺ drifter&#013;DYNAMO ⟺sumo&#013;GRAVES ⟺ necro&#013;GREY TALON ⟺ archer&#013;HAZE ⟺ haze&#013;HOLLIDAY ⟺ Astro&#013;INFERNUS ⟺ inferno&#013;IVY ⟺ tengu&#013;KELVIN ⟺ kelvin&#013;LADY GEIST ⟺ spectre&#013;LASH ⟺ lash&#013;McGINNIS ⟺ engineer&#013;MINA ⟺ vampirebat&#013;MIRAGE ⟺ mirage&#013;MO & KRILL ⟺ digger&#013;PAIGE ⟺ bookworm&#013;PARADOX ⟺ chrono&#013;POCKET ⟺ synth&#013;REM ⟺ familiar&#013;SEVEN ⟺ gigawatt&#013;SHIV ⟺ shiv&#013;SILVER ⟺ werewolf&#013;SINCLAIR ⟺ magician&#013;VENATOR ⟺ priest&#013;VICTOR ⟺ frank&#013;VINDICTA ⟺ hornet&#013;VISCOUS ⟺ viscous&#013;VYPER ⟺ kali/viper&#013;WARDEN ⟺ warden&#013;WRAITH ⟺ wraith&#013;YAMATO ⟺ yamato' src='./icons/info.svg' tabindex='0'><image>");
-                    $('.graphic-grid').load("graphic_grid.php", {
-                        table: current_table
-                    });
-                    $('.item-grid-container').show();
-                    $('.item-grid-container').scrollTop(0);
-                    
-                }
-                
-            });
-
-            var playing = false;
-
-            $('.player').on('click keydown', function(event) {
-                if (event.type === 'click' || (event.type === 'keydown' && event.key === 'Enter')) {
-                    if (!playing) {
-                        playing = true;
-                        $('.player audio').trigger('play');
-                        $('.player img').attr('src', './icons/icon_pause.svg');
-                    } else {
-                        playing = false;
-                        $('.player audio').trigger('pause');
-                        $('.player img').attr('src', './icons/icon_play.svg');
-                        
-                    }
-                    
-                }
-            });
-
-            $('.search-container').on('click keydown', function(event) {
-                if (event.type === 'click' || (event.type === 'keydown' && event.key === 'Enter')) {
-                    var user_input = $('.search-container input').val();
-                    $('.graphic-grid').load("graphic_grid.php", {
-                        search: user_input,
-                        table: current_table
-                    });
-                }
-            });
-
-            $('.toggle-background').on('click keydown', function(event) {
-                if (event.type === 'click' || (event.type === 'keydown' && event.key === 'Enter')) {
-                    if (background_on) {
-                        $('body').css('background-image', 'none');
-                        background_on = false;
-                    }
-                    else {
-                        $('body').css('background-image', current_background);
-                        background_on = true;
-                    }
-                }
-            });
-
-        });
-        
-
-        /* STYLING - STYLING - STYLING - STYLING - STYLING - STYLING - STYLING - STYLING - STYLING - STYLING - STYLING - STYLING */
-        $(document).on('click keydown', '.tag-unselected', function(event) {
-            if ((event.type === 'click') || (event.type === 'keydown' && event.key === 'Enter')) {
-                var selected_tag = $(this).attr('tag');
-                selected_tags.push(selected_tag);
-                /* alert(selected_tags); */
-                if (event.type === 'click') {
-                    $(this).attr('class','tag-currento');
-                }
-                if (event.type === 'keydown' && event.key === 'Enter') {
-                    $(this).attr('class','tag-selected');
-                }
-
-                $('.item-grid').load("item_grid.php", {
-                    tags: selected_tags
-                });
-            }
-        });
-
-        $(document).on('click keydown', '.tag-selected', function(event) {
-            if ((event.type === 'click') || (event.type === 'keydown' && event.key === 'Enter')) {
-                var deselected_tag = $(this).attr('tag');
-                var index = selected_tags.indexOf(deselected_tag);
-                selected_tags.splice(index, 1);
-                /* alert(selected_tags); */
-
-                if (event.type === 'click') {
-                    $(this).attr('class','tag-currentp');
-                }
-                if (event.type === 'keydown' && event.key === 'Enter') {
-                    $(this).attr('class','tag-unselected');
-                }
-
-                $('.item-grid').load("item_grid.php", {
-                    tags: selected_tags
-                });
-            }
-        });
-
-        $(document).on('mouseleave', '.tag-currento', function(event) {
-            $(this).attr('class','tag-selected');
-        });
-
-        $(document).on('click', '.tag-currento', function(event) {
-            var deselected_tag = $(this).attr('tag');
-            var index = selected_tags.indexOf(deselected_tag);
-            selected_tags.splice(index, 1);
-            /* alert(selected_tags); */
-
-            $(this).attr('class','tag-currentp');
-            $('.item-grid').load("item_grid.php", {
-                tags: selected_tags
-            });
-        });
-
-        $(document).on('mouseleave', '.tag-currentp', function(event) {
-            $(this).attr('class','tag-unselected');
-        });
-
-        $(document).on('click', '.tag-currentp', function(event) {
-            var selected_tag = $(this).attr('tag');
-            selected_tags.push(selected_tag);
-            /* alert(selected_tags); */
-            $(this).attr('class','tag-currento');
-            $('.item-grid').load("item_grid.php", {
-                tags: selected_tags
-            });
-        });
-
-
-
-        
-        
-    </script>
+    <script src="./tag_selection_styling.js"></script>
+    <script src="./jquery_dynamic_divs.js"></script>
 </head>
 
 <?php 
@@ -282,13 +42,11 @@ include 'db.php';
             </div>
 
             <div class="player" tabindex="0">
-                <audio loop><source src="./audio/music_match_intro_connecting_60bpm.mp3" type="audio/mpeg"></audio>
+                <audio loop>
+                    <source src="./audio/music_match_intro_connecting_60bpm.mp3" type="audio/mpeg">
+                </audio>
                 <image class="play-button" src="./icons/icon_play.svg"></image>
             </div>
-
-            
-            
-            
         </div>
 
         <div class="layout">
@@ -309,7 +67,6 @@ include 'db.php';
                         echo "<div class='tag-unselected' tabindex='0' title=\"{$row['display_name']}\" tag=\"{$row['file_name']}\"><image src=\"{$row['filepath']}\"></image></div>";
                     }
 
-
                     ?>
                 </div>
             </div>
@@ -322,15 +79,11 @@ include 'db.php';
                     while($row = $data_items->fetch_assoc()){
                         echo "<div class='item' tabindex='0'><image src=\"{$row['shop_image_webp']}\"></image><div class='item-name'>{$row['name']}</div></div>";
                     }
-
                     
                     ?>
                 </div>
                 <div class="graphic-grid"></div>
-
             </div>
-
-            
         </div>
     </div>
     
