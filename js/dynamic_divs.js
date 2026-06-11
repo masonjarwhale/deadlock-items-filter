@@ -1,6 +1,6 @@
-$(document).ready( function () {
-    var current_table = '';
+var current_table = '';
 
+$(document).ready( function () {
     $('.home').on('click keydown', function(event) {
         if (event.type === 'click' || (event.type === 'keydown' && event.key === 'Enter')) {
             $('.about-content, .search-container, .search-title, .graphic-grid').empty();
@@ -62,15 +62,24 @@ $(document).ready( function () {
             $('.item-grid-container').scrollTop(0);   
         }     
     });
+});
 
-    $('.search-container').on('click keydown', function(event) {
-        if (event.type === 'click' || (event.type === 'keydown' && event.key === 'Enter')) {
-            var user_input = $('.search-container input').val();
-            $('.graphic-grid').load("./php/graphic_grid.php", {
-                search: user_input,
-                table: current_table
-            });
-        }
-    });
+$(document).on('click keydown', '.search-container button', function(event) {
+    if ((event.type === 'click') || (event.type === 'keydown' && event.key === 'Enter')) {
+        var user_input = $('.search-container input').val();
+        $('.graphic-grid').load("./php/graphic_grid.php", {
+            search: user_input,
+            table: current_table
+        });
+    }
+});
 
+$(document).on('keydown', '.search-container input', function(event) {
+    if ((event.type === 'keydown' && event.key === 'Enter')) {
+        var user_input = $('.search-container input').val();
+        $('.graphic-grid').load("./php/graphic_grid.php", {
+            search: user_input,
+            table: current_table
+        });
+    }
 });
