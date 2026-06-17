@@ -142,6 +142,7 @@ body {
     .item:focus {
         filter: brightness(1.2);
         background-color: rgba(112, 248, 193, 0.7);
+        anchor-name: --hovered-item;
         /* outline: auto; */
     }
     .item:hover {
@@ -428,11 +429,23 @@ body {
     margin-left: 0.5vw;
     /* margin: 0;
     inset: auto; */
-    background-color: orange;
+    /* background-color: orange; */
     position: absolute;
     position-anchor: --hovered-item;
     
     top: anchor(top);
     left: anchor(right);
     position-try: none;
+}
+
+.tooltip-header {
+    background-color: purple;
+}
+
+.tooltip-sections {
+    background-color: green;
+}
+
+.tooltip-footer {
+    background-color: red;
 }
