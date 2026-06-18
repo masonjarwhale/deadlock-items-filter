@@ -1,6 +1,6 @@
 $(document).on('mouseenter focus', '.item', function(event) {
-    $('.tooltip').css('visibility','visible');
-    $('.tooltip').css('position-try-fallbacks','flip-inline, flip-start, flip-block, flip-x flip-y');
+    $('.tooltip-container').css('visibility','visible');
+    $('.tooltip-container').css('position-try-fallbacks','flip-inline, flip-start, flip-block, flip-x flip-y');
     var item_name = $(this).attr('item-name')
     $('.tooltip-header').load("./php/tooltip_header.php", {
         class_name: item_name
@@ -10,14 +10,14 @@ $(document).on('mouseenter focus', '.item', function(event) {
         item: selected_tags
     }); */
 
-    $('.tooltip-footer').load("./php/tooltip_footer.php", {
+    $('.tooltip-component-container').load("./php/tooltip_footer.php", {
         class_name: item_name
     });
     /* flip-start flip-block */
 });
 
 $(document).on('mouseleave blur', '.item', function(event) {
-    $('.tooltip').css('visibility','hidden');
-    $('.tooltip').css('position-try-fallbacks','none');
+    $('.tooltip-container').css('visibility','hidden');
+    $('.tooltip-container').css('position-try-fallbacks','none');
 
 });

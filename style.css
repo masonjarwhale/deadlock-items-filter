@@ -422,30 +422,82 @@ body {
         /* outline: auto; */
     }
 
-.tooltip {
+/* .tooltip-container {
+    outline: rgba(112, 248, 193, 0.7) 1px solid;
+    margin: 10px;
+} */
+
+.tooltip-container {
     visibility: hidden;
-    height: 400px;
-    width: 400px;
     margin-left: 0.5vw;
+    font-family: ms pgothic;
+    font-size: 16px;
+    width: 400px;
     /* margin: 0;
     inset: auto; */
-    /* background-color: orange; */
+    background-color: rgb(0, 0, 0);
     position: absolute;
     position-anchor: --hovered-item;
+    outline: rgba(112, 248, 193, 0.7) 1px solid;
     
     top: anchor(top);
     left: anchor(right);
     position-try: none;
+
+    transform: scale(1);
+}
+
+.tooltip {
+    margin: 4px;
+}
+
+.tooltip-component-container {
+    display: grid;
+    gap: 1px;
+    background-color: black;
+}
+
+.tooltip-img {
+    /* background-color: rgb(0, 84, 92); */
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    gap: 10px;
+    vertical-align: middle;
+    
+}
+    .tooltip-img img {
+        width: 100%;
+        height: auto;
+    }
+
+.header-img {
+    /* background-color: rgb(0, 84, 92); */
+    display: grid;
+    grid-template-columns: 24px 1fr;
+    
+}
+    .header-img img {
+        width: 100%;
+        height: auto;
+    }
+
+.component-text {
+    display: grid;
+    /* text-align: center; */
+    align-items: center;
+    /* justify-items: center; */
 }
 
 .tooltip-header {
-    background-color: purple;
+    background-color: black;
+    border-bottom: rgba(255, 255, 255, 0.25) 1px dashed;
 }
 
 .tooltip-sections {
-    background-color: green;
+    background-color: rgb(0, 0, 0);
 }
 
 .tooltip-footer {
-    background-color: red;
+    background-color: rgb(0, 0, 0);
+    border-top: rgba(255, 255, 255, 0.25) 1px dashed;
 }

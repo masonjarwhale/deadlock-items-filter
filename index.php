@@ -63,11 +63,16 @@
                 </div>
             </div>
 
-            <div class="tooltip">
-                <div class="tooltip-header"></div>
-                <div class="tooltip-sections">b</div>
-                <div class="tooltip-footer"></div>
+            <div class="tooltip-container">
+                <div class="tooltip">
+                    <div class="tooltip-header"></div>
+                    <div class="tooltip-sections">b</div>
+                    <div class="tooltip-footer">
+                        <div class="tooltip-component-container"></div>
+                    </div>
+                </div>
             </div>
+
             <div class="item-grid-container" tabindex="-1">
                 <div class="item-grid">
                     <?php 
