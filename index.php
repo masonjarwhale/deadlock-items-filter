@@ -14,6 +14,7 @@
     <script src="./js/music_player.js"></script>
     <script src="./js/backgrounds.js"></script>
     <script src="./js/tooltip.js"></script>
+    <script src="./js/item_dim.js"></script>
 </head>
 
 <body>
