@@ -11,7 +11,7 @@ function template($array, $db, $class_name, $innate, $positive, $get_cooldown) {
     if($array !== NULL) {
         foreach ($array as $property) {
             if ((($property !== 'AbilityCooldown')) && !$get_cooldown) {
-                $info = $db->query("SELECT * from item_filters where class_name = $class_name and property = '$property' and stat_value not in (0,1)");
+                $info = $db->query("SELECT * from item_filters where class_name = $class_name and property = '$property' and stat_value not in (0)");
                 $info = $info->fetch_assoc();
                 if ($info !== NULL) {
                     if ($innate) {
@@ -24,10 +24,10 @@ function template($array, $db, $class_name, $innate, $positive, $get_cooldown) {
                 
             }
             elseif ((($property === 'AbilityCooldown') || ($property === 'AbilityChargeUpTime')) && $get_cooldown) {
-                $info = $db->query("SELECT * from item_filters where class_name = $class_name and property = '$property' and stat_value not in (0,1)");
+                $info = $db->query("SELECT * from item_filters where class_name = $class_name and property = '$property' and stat_value not in (0)");
                 $info = $info->fetch_assoc();
                 if ($info !== NULL) {
-                    return $info['stat_value'];
+                    return $info['stat_value_display'];
                 }
                 
             }
@@ -41,8 +41,10 @@ function innate($info, $positive) {
         if (($info['stat_value'] > 0) && $positive) {
             echo "+";
         }
-        echo $info['stat_value'];
-        echo $info['postfix'];
+        echo $info['stat_value_display'];
+        if ($info['postfix'] !== 'm') {
+            echo $info['postfix'];
+        }
         echo " {$info['label']}";
         echo "</div>";
     }
@@ -53,13 +55,27 @@ function important_grid($info) {
         echo "<div class='important-property'>";
         echo "<div>";
         echo "<img src='{$info['icon']}'>";
-        echo $info['stat_value'];
-        echo $info['postfix'];
+        echo $info['stat_value_display'];
+        if ($info['postfix'] !== 'm') {
+            echo $info['postfix'];
+        }
         echo '<br>';
         echo " {$info['label']}";
         echo "</div>";
+        
+    }
+    if (($info['stat_scale'] !== NULL) && ($info['stat_scale'] !== '0.0')) {
+        echo "<div class='scaling-items'>";
+        if (($info['stat_scale_type'] === 'ETechPower') || ($info['class_name'] === 'upgrade_health_stimpak') || ($info['stat_scale'] === '0.04')) {
+            echo "<img src='./icons/keystat_spirit_arrow.png'><br>";
+        }
+        else {
+            echo "<img src='./icons/keystat_boon_arrow.png'><br>";
+        }
+        echo "x {$info['stat_scale']}";
         echo "</div>";
     }
+    echo "</div>";
 }
 
 while($row = $data->fetch_assoc()){
