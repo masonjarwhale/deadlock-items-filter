@@ -7,7 +7,7 @@ $array = [];
 
 $data = $db->query("SELECT * from tooltips where class_name = $class_name");
 
-function template($array, $db, $class_name, $innate, $positive, $get_cooldown) {
+function template($array, $db, $class_name, $innate, $bottom, $get_cooldown) {
     if($array !== NULL) {
         foreach ($array as $property) {
             if ((($property !== 'AbilityCooldown')) && !$get_cooldown) {
@@ -15,10 +15,10 @@ function template($array, $db, $class_name, $innate, $positive, $get_cooldown) {
                 $info = $info->fetch_assoc();
                 if ($info !== NULL) {
                     if ($innate) {
-                        innate($info, $positive);
+                        innate($info, $bottom);
                     }
                     else {
-                        important_grid($info);
+                        important_grid($info, $db);
                     }
                 }
                 
@@ -35,14 +35,22 @@ function template($array, $db, $class_name, $innate, $positive, $get_cooldown) {
     }
 }
 
-function innate($info, $positive) {
+function innate($info, $bottom) {
     if (($info['stat_value'] !== NULL) && ($info['stat_value'] !== 0)) {
+        /* $no_spaces = $info['postfix'];
+        $no_spaces = str_replace(' ', '', $no_spaces); */
         echo "<div>";
-        if (($info['stat_value'] > 0) && $positive) {
-            echo "+";
+        if (!$bottom) {
+            if (!str_contains($info['stat_value_display'], '-')) {
+                echo '+';
+            }
         }
+        
+        /* if (($info['stat_value'] > 0) && $positive) {
+            echo "+";
+        } */
         echo $info['stat_value_display'];
-        if ($info['postfix'] !== 'm') {
+        if (!str_contains($info['stat_value_display'], 'm')) {
             echo $info['postfix'];
         }
         echo " {$info['label']}";
@@ -50,17 +58,39 @@ function innate($info, $positive) {
     }
 }
 
-function important_grid($info) {
-    if (($info['stat_value'] !== NULL) && ($info['stat_value'] !== 0)) {
+function important_grid($info, $db) {
+    if (($info['stat_value'] !== NULL) && ($info['stat_value'] !== 0) && ($info['label'] !== NULL)) {
         echo "<div class='important-property'>";
         echo "<div>";
-        echo "<img src='{$info['icon']}'>";
+        
+        $property = $info['property'];
+        $icons = $db->query("SELECT * from tooltip_icons where property = '$property'");
+        $icons = $icons->fetch_assoc();
+        if ($icons !== NULL) {
+            echo "<img src='{$icons['filepath']}'>";
+        }
+    
+        if ($info['stat_value'] > 0) {
+            if (($info['prefix'] === '+') || ($info['prefix'] === '{s:sign}')) {
+                echo '+';
+            }
+            elseif ($info['prefix'] === '-') {
+                echo $info['prefix'];
+            }
+        }
+        
         echo $info['stat_value_display'];
-        if ($info['postfix'] !== 'm') {
+        
+        if (!str_contains($info['stat_value_display'], 'm')) {
             echo $info['postfix'];
         }
         echo '<br>';
         echo " {$info['label']}";
+
+        echo '<br>';
+        if (!empty($info['conditional'])) {
+            echo "<div class='conditional'>Conditional</div>";
+        }
         echo "</div>";
         
     }
@@ -81,50 +111,57 @@ function important_grid($info) {
 while($row = $data->fetch_assoc()){
     if ($row['section_type'] === 'innate'){
         $array = json_decode($row['elevated_properties']);
-        template($array, $db, $class_name, true, true, false);
+        template($array, $db, $class_name, true, false, false);
 
         $array = json_decode($row['properties']);
-        template($array, $db, $class_name, true, true, false);
+        template($array, $db, $class_name, true, false, false);
     }
     else {
         $array = json_decode($row['properties']);
         $cd = template($array, $db, $class_name, false, false, true);
         if (($row['section_type'] === 'passive') || ($row['section_type'] === NULL)) {
-            $upper = 'Passive';
+            $header = 'Passive';
         }
         else {
-            $upper = 'Active';
+            $header = 'Active';
         }
         
         if ($cd) {
-            echo "<div class='section-header'>{$upper}<div><img src='./icons/cooldown.svg'>{$cd}s</div></div>";
+            echo "<div class='section-header'>{$header}<div><img src='./icons/cooldown.svg'>{$cd}s</div></div>";
+            echo $row['loc_string'];
+            echo '<br>';
         }
         else {
-            echo "<div class='section-header'>{$upper}</div>";
+            echo "<div class='section-header'>{$header}</div>";
+            echo $row['loc_string'];
+            echo '<br>';
         }
-        echo $row['loc_string'];
-        echo '<br>';
+        
 
         
         if ($row['important_properties'] !== NULL) {
+            echo "<div class='section-grid'>";
             $array = json_decode($row['important_properties']);
+            template($array, $db, $class_name, false, false, false);
+            echo "</div>";
         }
         elseif (($row['important_properties'] === NULL) && ($row['properties'] === NULL)) {
+            echo "<div class='section-grid'>";
             $array = json_decode($row['elevated_properties']);
+            template($array, $db, $class_name, false, false, false);
+            echo "</div>";
         }
         else {
+            echo "<div class='horizontal-grid'>";
             $array = json_decode($row['properties']);
+            template($array, $db, $class_name, true, false, false);
+            echo "</div>";
         }
-
-        echo "<div class='section-grid'>";
-        template($array, $db, $class_name, false, false, false);
-        echo "</div>";
-
-
+        
         if (($row['important_properties'] !== NULL) || ($row['elevated_properties'] !== NULL)) {
             $array = json_decode($row['properties']);
             echo "<div class='bottom-grid'>";
-            template($array, $db, $class_name, true, false, false);
+            template($array, $db, $class_name, true, true, false);
             echo "</div>";
         }
     }
