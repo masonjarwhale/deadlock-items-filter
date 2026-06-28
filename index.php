@@ -67,7 +67,7 @@
             <div class="tooltip-container">
                 <div class="tooltip">
                     <div class="tooltip-header"></div>
-                    <div class="tooltip-sections">b</div>
+                    <div class="tooltip-sections"></div>
                     <div class="tooltip-footer">
                         <div class="tooltip-component-container"></div>
                     </div>
