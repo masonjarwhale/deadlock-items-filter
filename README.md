@@ -1,4 +1,4 @@
-The 7 tables in the DB are formatted as follows:
+The 9 tables in the DB are formatted as follows:
 ```sql
 CREATE TABLE components {
     class_name VARCHAR(50)
@@ -9,6 +9,11 @@ CREATE TABLE components_tofrom {
     component_items VARCHAR(50)
 };
 
+CREATE TABLE tooltip_icons (
+    property VARCHAR(100),
+    filepath VARCHAR(100)
+);
+
 CREATE TABLE icons (
     graphic_name VARCHAR(100),
     filepath VARCHAR(200)
@@ -17,6 +22,14 @@ CREATE TABLE icons (
 CREATE TABLE images (
     graphic_name VARCHAR(100),
     filepath VARCHAR(200)
+);
+
+/* only for statuses/conditions */
+CREATE TABLE property_overrides (
+    property VARCHAR(50),
+    filepath VARCHAR(50),
+    label VARCHAR(20),
+    caption VARCHAR(20)
 );
 
 CREATE TABLE tags (
