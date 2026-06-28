@@ -3,7 +3,7 @@ function show_tooltip() {
 }
 
 $(document).on('mouseenter focus', '.item, .item-dim', function(event) {
-    $('.tooltip-container').css('position-try-fallbacks','flip-inline, flip-start, flip-block, flip-x flip-y');
+    $('.tooltip-container').css('position-try-fallbacks','flip-inline, flip-block, flip-x flip-y');
 
     var item_name = $(this).attr('item-name')
     $('.tooltip-header').load("./php/tooltip_header.php", {
